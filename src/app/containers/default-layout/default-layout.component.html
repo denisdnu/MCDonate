@@ -7,14 +7,8 @@
 >
   <c-sidebar-brand
     [brandFull]="{
-      src: 'assets/img/brand/coreui-angular.svg',
+      src: 'assets/img/brand/coreui-base.svg',
       width: 200,
-      height: 46,
-      alt: 'CoreUI Logo'
-    }"
-    [brandNarrow]="{
-      src: 'assets/img/brand/coreui-signet-white.svg',
-      width: 46,
       height: 46,
       alt: 'CoreUI Logo'
     }"
@@ -23,12 +17,12 @@
   </c-sidebar-brand>
     <perfect-scrollbar [config]="perfectScrollbarConfig">
   <!--  [perfectScrollbar]="perfectScrollbarConfig"-->
-  <c-sidebar-nav
-    [navItems]="navItems"
-    dropdownMode="close"
-  >
+    <c-sidebar-nav
+      [navItems]="navItems"
+      dropdownMode="close"
+    >
   </c-sidebar-nav>
-    </perfect-scrollbar>
+  </perfect-scrollbar>
   <c-sidebar-toggler
     *ngIf="!sidebar.narrow"
     toggle="unfoldable"

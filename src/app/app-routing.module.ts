@@ -6,32 +6,35 @@ import { Page404Component } from './views/pages/page404/page404.component';
 import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
+import { HomeComponent } from './home';
+import { AuthGuard } from './_helpers';
+
+const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
+const usersModule = () => import('./users/users.module').then(x => x.UsersModule);
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full'
-  },
+  //{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
+  { path: 'account', loadChildren: accountModule },
   {
     path: '',
     component: DefaultLayoutComponent,
     data: {
-      title: 'Home'
+      title: 'Головна'
     },
     children: [
       {
-        path: 'dashboard',
+        path: 'shops',
         loadChildren: () =>
-          import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
+          import('./views/shops/shops.module').then((m) => m.ShopsModule)
       },
       {
-        path: 'theme',
+        path: 'shops/create',
         loadChildren: () =>
-          import('./views/theme/theme.module').then((m) => m.ThemeModule)
+          import('./views/shops/shop-create/shop-create.module').then((m) => m.ShopCreateModule)
       },
       {
-        path: 'base',
+        path: 'wallet',
         loadChildren: () =>
           import('./views/base/base.module').then((m) => m.BaseModule)
       },
